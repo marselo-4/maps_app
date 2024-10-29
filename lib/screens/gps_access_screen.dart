@@ -39,8 +39,8 @@ class _AccessButton extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            // TODO
-            print("Boton presionado");
+            final gpsBloc = BlocProvider.of<GpsBloc>(context);
+            gpsBloc.askGpsAccess();
           },
           child: const Text(
             "Solicitar acceso",
