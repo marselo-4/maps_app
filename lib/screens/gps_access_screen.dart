@@ -33,6 +33,7 @@ class _AccessButton extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Image.asset('assets/img/error.jpg'),
         const Text('Es necesario el acceso a GPS'),
         MaterialButton(
             color: Colors.black,
@@ -57,9 +58,14 @@ class _EnableGpsMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      'Debe de habilitar el GPS',
-      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300),
+    return Column(
+      children: [
+        Image.asset('assets/img/error.jpg'),
+        const Text(
+          'Debe de habilitar el GPS',
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300),
+        ),
+      ],
     );
   }
 }
