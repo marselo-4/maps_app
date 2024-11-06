@@ -37,16 +37,14 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       body: BlocBuilder<LocationBloc, LocationState>(
         builder: (context, locationState) {
-
           if (locationState.lastKnownLocation == null) {
             return const Center(child: Text('Espere por favor...'));
           }
 
           return BlocBuilder<MapBloc, MapState>(
             builder: (context, mapState) {
-
-              Map<String, Polyline> polylines = Map.from( mapState.polylines );
-              if ( !mapState.showMyRoute ) {
+              Map<String, Polyline> polylines = Map.from(mapState.polylines);
+              if (!mapState.showMyRoute) {
                 polylines.removeWhere((key, value) => key == 'myRoute');
               }
 
@@ -57,8 +55,7 @@ class _MapScreenState extends State<MapScreen> {
                       initialLocation: locationState.lastKnownLocation!,
                       polylines: polylines.values.toSet(),
                     ),
-
-                    // TODO: botones...
+                    const SearchBar()
                   ],
                 ),
               );
