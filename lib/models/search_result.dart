@@ -1,14 +1,20 @@
+
+
 class SearchResult {
+
   final bool cancel;
   final bool manual;
 
-  SearchResult({required this.cancel, this.manual = false});
+  SearchResult({
+    required this.cancel, 
+    this.manual = false
+  });
 
-  //TODO: nombre, descripcion, latlng
+  // Todo: 
+  // name, description, latlon
 
   @override
   String toString() {
-    // TODO: implement toString
-    return "SEARCHRESULT => cancel: $cancel, manual: $manual";
+    return '{ cancel: $cancel, manual: $manual }';
   }
 }

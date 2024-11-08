@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:maps_app/models/models.dart';
 
-class SearchDestinationDelegate extends SearchDelegate<SearchResult> {
-  SearchDestinationDelegate() : super(searchFieldLabel: 'Buscar...');
+
+class SearchDestinationDelegate extends SearchDelegate<SearchResult>{
+ 
+  SearchDestinationDelegate():super(
+    searchFieldLabel: 'Buscar...'
+  );
 
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-          onPressed: () {
-            query = '';
-          },
-          icon: const Icon(Icons.clear))
+        icon: const Icon( Icons.clear ),
+        onPressed: () {
+          query = '';
+        })
     ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          final result = SearchResult(cancel: true);
-          close(context, result);
-        },
-        icon: const Icon(Icons.arrow_back_ios));
+      icon: const Icon( Icons.arrow_back_ios ),
+      onPressed: () {
+        final result = SearchResult( cancel: true );
+        close(context, result );
+      }, 
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    return const Text('Aqui se muestran los resultados');
+    return const Text('buildResults');
   }
 
   @override
@@ -35,22 +40,18 @@ class SearchDestinationDelegate extends SearchDelegate<SearchResult> {
     return ListView(
       children: [
         ListTile(
-          leading: const Icon(
-            Icons.location_on_outlined,
-            color: Colors.black,
-          ),
-          title: const Text(
-            "Introduce la ubicación manualmente",
-            style: TextStyle(color: Colors.black),
-          ),
+          leading: const Icon( Icons.location_on_outlined, color: Colors.black ),
+          title: const Text('Colocar la ubicación manualmente', style: TextStyle( color: Colors.black )),
           onTap: () {
-            // TODO: enviar algo
-            final result = SearchResult(cancel: false, manual: true);
+            // TODO: regresar algo...
 
-            close(context, result);
-          },
+
+            final result = SearchResult( cancel: false, manual: true );
+            close(context, result );
+          }
         )
       ],
     );
   }
+
 }
