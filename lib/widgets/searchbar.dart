@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maps_app/delegates/delegates.dart';
+import 'package:maps_app/models/models.dart';
+
+import '../blocs/blocs.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);
+
+  void onSearchResults(BuildContext context, SearchResult result) {
+    final searchBloc = BlocProvider.of<SearchBloc>(context);
+
+    if (result.manual) {
+      searchBloc.add(OnActivateManualMarkerEvent());
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +26,12 @@ class SearchBar extends StatelessWidget {
       width: double.infinity,
       height: 50,
       child: GestureDetector(
-        onTap: () {
-          showSearch(context: context, delegate: SearchDestinationDelegate());
+        onTap: () async {
+          final result = await showSearch(
+              context: context, delegate: SearchDestinationDelegate());
+          if (result == null) return;
+
+          onSearchResults(context, result);
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
